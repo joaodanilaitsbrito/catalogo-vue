@@ -1,52 +1,49 @@
-# 📚 **Catálogo de Livros** 
+# 📚 Catálogo de Livros
 
-## **📖 Sobre o Projeto** 
+## 📖 Sobre o Projeto
 
-O **Catálogo de Livros** é uma aplicação web desenvolvida para facilitar o gerenciamento, organização e controle de acervos bibliográficos. O sistema permite cadastrar novos títulos, editar informações existentes, remover registros obsoletos e realizar consultas dinâmicas em tempo real, além de fornecer identificação visual imediata sobre o estado de cada exemplar. 
+O **Catálogo de Livros** é uma aplicação web desenvolvida para facilitar o gerenciamento, organização e controle de acervos bibliográficos. O sistema permite cadastrar novos títulos, editar informações existentes, remover registros obsoletos e realizar consultas dinâmicas em tempo real, além de fornecer identificação visual imediata sobre o estado de cada exemplar.
 
-O projeto foi construído com foco em boas práticas de componentização e reatividade, utilizando a **Composition API** do Vue.js 3 com a sintaxe <script setup>, proporcionando uma estrutura de código limpa, modular e de alto desempenho sobre o ferramental do Vite. 
+O projeto foi construído com foco em boas práticas de componentização e reatividade, utilizando a **Composition API** do Vue.js 3 com a sintaxe `<script setup>`, proporcionando uma estrutura de código limpa, modular e de alto desempenho sobre o ferramental do Vite.
 
-## 🛠️� 
+---
 
-## **Tecnologias Utilizadas** 
+## 🛠️ Tecnologias Utilizadas
 
-- **Vue.js 3:** Framework progressivo para construção de interfaces de usuário reativas. 
+- **Vue.js 3:** Framework progressivo para construção de interfaces de usuário reativas.
+- **Vite:** Ferramenta de build e servidor de desenvolvimento de alta performance.
+- **JavaScript (ES6+):** Linguagem utilizada na implementação da lógica e manipulação de estados.
+- **Composition API (`<script setup>`):** Paradigma moderno de organização e reutilização de lógica no Vue 3.
+- **CSS3:** Estilização componentizada com suporte a layouts modernos e responsivos.
 
-- **Vite:** Ferramenta de build e servidor de desenvolvimento de alta performance. 
+---
 
-- **JavaScript (ES6+):** Linguagem utilizada na implementação da lógica e manipulação de estados. 
+## ✨ Funcionalidades
 
-- **Composition API (<script setup>):** Paradigma moderno de organização e reutilização de lógica no Vue 3. 
+- **Cadastro de Livros:** Formulário dedicado para inserção de títulos com campos para título, autor, categoria e status inicial.
+- **Busca em Tempo Real:** Filtragem dinâmica que pesquisa simultaneamente por título e nome do autor à medida que o usuário digita.
+- **Edição em Linha:** Alteração direta das propriedades do livro (dados e disponibilidade) sem recarregar a interface.
+- **Exclusão com Confirmação:** Remoção segura de registros com solicitação de confirmação para evitar perdas acidentais.
+- **Indicadores Visuais de Status:** Identificação por tags coloridas para monitoramento rápido:
+  - `Disponível` (Verde)
+  - `Emprestado` (Vermelho)
+  - `Reservado` (Amarelo)
 
-- **CSS3:** Estilização componentizada com suporte a layouts modernos e responsivos. 
+---
 
-## **📖 Funcionalidades** 
+## 📋 Pré-requisitos
 
-- **Cadastro de Livros:** Formulário dedicado para inserção de títulos com campos para título, autor, categoria e status inicial. 
+Antes de iniciar, certifique-se de ter instalado em seu ambiente:
 
-- **Busca em Tempo Real:** Filtragem dinâmica que pesquisa simultaneamente por título e nome do autor à medida que o usuário digita. 
+- **Node.js:** Versão 18.x ou superior recomendada.
+- **npm:** Gerenciador de pacotes do ecossistema Node.js.
 
-- **Edição em Linha:** Alteração direta das propriedades do livro (dados e disponibilidade) sem recarregar a interface. 
+Para verificar se as ferramentas estão instaladas, execute no terminal:
+``bash
+node -v
+npm -v(
 
-- **Exclusão com Confirmação:** Remoção segura de registros com solicitação de confirmação para evitar perdas acidentais. 
-
-- **Indicadores Visuais de Status:** Identificação por tags coloridas para monitoramento rápido: Disponível (Verde) 
-
-- Emprestado (Vermelho) 
-
-- Reservado (Amarelo) 
-
-## 📋 **Pré-requisitos** 
-
-Antes de iniciar, certifique-se de ter instalado em seu ambiente: 
-
-- **Node.js:** Versão 18.x ou superior recomendada. 
-
-- **npm:** Gerenciador de pacotes do ecossistema Node.js. 
-
-Para verificar se as ferramentas estão instaladas, execute no terminal: 
-
-node -v npm -v 
+---
 
 ## **📖 Como Executar o Projeto** 
 
@@ -72,11 +69,23 @@ Abra o endereço gerado pelo Vite no terminal, geralmente:
 
 http://localhost:5173 
 
+---
+
 ## **📖 Estrutura de Componentes** 
 
 A interface foi estruturada de forma modular, delegando responsabilidades específicas para cada componente: 
 
-src/ ── components/ │   ── AddForm.vue       # Formulário para inclusão de novos livros │   ── Card.vue          #├ ├ ├ Cartão com exibição, edição e exclusão de cada exemplar │   └── SearchBar.vue     # Campo de busca e filtragem reativa │ ── App.vue               # Componente central, estado global e regras de negócio ── main.js               # Ponto├ ├ de inicialização da aplicação Vue └── style.css             # Folha de estilos globais 
+src/
+├── components/
+│   ├── AddForm.vue       # Formulário para cadastro de novos livros
+│   ├── Card.vue          # Exibição, edição e exclusão de cada livro
+│   └── SearchBar.vue     # Campo de busca reativa
+│
+├── App.vue               # Componente principal, estado global e lógica
+├── main.js               # Ponto de entrada da aplicação
+└── style.css             # Estilos globais
+
+---
 
 ### **Detalhamento dos Componentes** 
 
@@ -87,6 +96,8 @@ src/ ── components/ │   ── AddForm.vue       # Formulário para inclus
 - **Card.vue:** Apresenta os detalhes do livro, gerencia o estado interno de edição em linha e solicita exclusões via emissão de eventos. 
 
 - **SearchBar.vue:** Input de busca controlado que emite atualizações para sincronizar o filtro no componente pai. 
+
+---
 
 ## **⚡ Gerenciamento de Estado** 
 
@@ -100,6 +111,8 @@ A filtragem dos registros exibidos é realizada de maneira reativa:
 
 const livrosFiltrados = computed(() => {   const termo = busca.value.toLowerCase().trim()   if (!termo) return livros.value    return livros.value.filter(     (livro) =>       livro.titulo.toLowerCase().includes(termo) || livro.autor.toLowerCase().includes(termo)   ) }) 
 
+---
+
 ## **📖 Props e Eventos** 
 
 A troca de informações entre componentes segue o fluxo unidirecional de dados ( _props down, events up_ ). 
@@ -112,6 +125,8 @@ A troca de informações entre componentes segue o fluxo unidirecional de dados 
 
 <AddForm @add-livro="adicionarLivro" /> <SearchBar @update:busca="busca = $event" /> <Card   @updatelivro="atualizarLivro"   @delete-livro="excluirLivro" /> 
 
+---
+
 ## **📖 Interface** 
 
 O design foi estruturado para fornecer uma experiência de uso intuitiva e visualmente equilibrada: 
@@ -122,7 +137,8 @@ O design foi estruturado para fornecer uma experiência de uso intuitiva e visua
 
 - Feedback imediato de preenchimento e busca sem travamentos na interface. 
 
-- Destaques em cores semânticas para identificação instantânea de disponibilidade. 
+
+---
 
 ## **📖 Desafios e Aprendizados** 
 
@@ -140,9 +156,13 @@ Durante o ciclo de desenvolvimento do projeto, foram consolidados os seguintes c
 
 ● Práticas de versionamento de código com **Git** e hospedagem no **GitHub** . 
 
+---
+
 ## 🎓 **Conclusão** 
 
 O projeto consolida os fundamentos essenciais do ecossistema Vue.js aplicados ao desenvolvimento front-end. A aplicação demonstra com clareza o ciclo de vida dos dados em um ambiente reativo, oferecendo operações completas de manipulação de dados na interface, comunicação sólida entre componentes e uma experiência de uso fluida. 
+
+---
 
 ## **📖 Autor** 
 
