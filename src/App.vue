@@ -1,15 +1,18 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import SearchBar from './components/SearchBar.vue'
 import Card from './components/Card.vue'
 import AddForm from './components/AddForm.vue'
 
-const items = ref([
+const defaultItems = [
   { id: 1, title: 'O Senhor dos Anéis', category: 'Fantasia', author: 'J.R.R. Tolkien', status: 'Disponível' },
   { id: 2, title: '1984', category: 'Distopia', author: 'George Orwell', status: 'Emprestado' },
   { id: 3, title: 'Dom Casmurro', category: 'Romance', author: 'Machado de Assis', status: 'Disponível' },
   { id: 4, title: 'Clean Code', category: 'Tecnologia', author: 'Robert C. Martin', status: 'Disponível' }
-])
+]
+
+const savedItems = localStorage.getItem('catalogo-livros')
+const items = ref(savedItems ? JSON.parse(savedItems) : defaultItems)
 
 const searchTerm = ref('')
 
@@ -34,6 +37,10 @@ function updateItem(updatedItem) {
 function deleteItem(id) {
   items.value = items.value.filter(i => i.id !== id)
 }
+
+watch(items, (newItems) => {
+  localStorage.setItem('catalogo-livros', JSON.stringify(newItems))
+}, { deep: true })
 </script>
 
 <template>
@@ -43,15 +50,12 @@ function deleteItem(id) {
         <h1 class="app-title">Catálogo de Livros</h1>
         <p class="app-subtitle">Gerencie seu acervo de leitura de forma simples e intuitiva</p>
       </header>
-
       <section class="section-search">
         <SearchBar v-model="searchTerm" />
       </section>
-
       <section class="section-form">
         <AddForm @add="addItem" />
       </section>
-
       <section class="section-grid">
         <div v-if="filteredItems.length === 0" class="empty-state">
           Nenhum livro encontrado com o termo pesquisado.
@@ -80,7 +84,6 @@ function deleteItem(id) {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: #243b53;
 }
-
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -88,11 +91,9 @@ function deleteItem(id) {
   flex-direction: column;
   gap: 28px;
 }
-
 .app-header {
   text-align: center;
 }
-
 .app-title {
   font-size: 2.2rem;
   font-weight: 800;
@@ -100,13 +101,11 @@ function deleteItem(id) {
   margin: 0 0 6px 0;
   letter-spacing: -0.03em;
 }
-
 .app-subtitle {
   font-size: 1rem;
   color: #627d98;
   margin: 0;
 }
-
 .section-search,
 .section-form {
   background: #ffffff;
@@ -114,13 +113,11 @@ function deleteItem(id) {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
-
 .empty-state {
   text-align: center;
   padding: 40px;
@@ -130,7 +127,6 @@ function deleteItem(id) {
   font-size: 1.05rem;
   border: 1px dashed #bcccdc;
 }
-
 @media (max-width: 640px) {
   .page-wrapper {
     padding: 20px 12px;
