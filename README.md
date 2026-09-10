@@ -215,7 +215,7 @@ O projeto consolida os fundamentos essenciais do ecossistema Vue.js aplicados ao
 
 ## 📖 Autor
 
-Desenvolvido por **João Pedro Danilaits Carvalho Brito**, **Luiz Henrique Marçal Andre** e **Yasmin Claro de Almeida** para a disciplina de **Web 2**.
+Desenvolvido por **João Pedro Danilaits Carvalho Brito** e **Luiz Henrique Marçal Andre** para a disciplina de **Web 2**.
 
 - **GitHub:** [@joaodanilaitsbrito](https://github.com/joaodanilaitsbrito)
 - **Repositório do Projeto:** [catalogo-vue](https://github.com/joaodanilaitsbrito/catalogo-vue)
